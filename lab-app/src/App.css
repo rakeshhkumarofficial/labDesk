@@ -1,0 +1,29 @@
+.App{
+  padding-top: 5px;
+  display: flex;
+  justify-content: baseline;
+  gap: 2px;
+  background: #ececf8;
+
+}
+.Enter-Area{
+  width: 82%;
+}
+.flex{
+  display: flex;
+  justify-content: baseline;
+  gap: 3px;
+}
+.flex div{
+  width: 100%;
+  margin: 3px 1px;
+}
+.btn{
+  width: 100%;
+  padding: 3px;
+  text-align: center;
+  background-color: #884dff !important;
+}
+.pt{
+  margin: 3px 0.2px;
+}
