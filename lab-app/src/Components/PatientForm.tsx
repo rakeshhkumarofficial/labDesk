@@ -2,25 +2,58 @@
 import { Button, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Stack, TextField } from '@mui/material';
 import '../App.css';
 import React from 'react';
+import Dialog from '@mui/material/Dialog';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemButton from '@mui/material/ListItemButton';
+import List from '@mui/material/List';
+import Divider from '@mui/material/Divider';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import CloseIcon from '@mui/icons-material/Close';
+import Slide from '@mui/material/Slide';
+import { TransitionProps } from '@mui/material/transitions';
+
+const Transition = React.forwardRef(function Transition(
+  props: TransitionProps & {
+    children: React.ReactElement;
+  },
+  ref: React.Ref<unknown>,
+) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 function PatientForm(){
     const [Materials, setMaterials] = React.useState('');
-    const [referredby, setReferredby] = React.useState('');
-     const [openHAEMATOLOGY, setOpenHAEMATOLOGY] = React.useState(false);
-
     const handleChange = (event: SelectChangeEvent) => {
         setMaterials(event.target.value);
     };
-    const handleReferreChange = (event: SelectChangeEvent) => {
+    const [referredby, setReferredby] = React.useState('');
+     const handleReferreChange = (event: SelectChangeEvent) => {
         setReferredby(event.target.value);
     };
-      const handleClickOpen = () => {
+     const [openHAEMATOLOGY, setOpenHAEMATOLOGY] = React.useState(false);
+          const handleClickOpen = () => {
     setOpenHAEMATOLOGY(true);
   };
 
   const handleClose = () => {
     setOpenHAEMATOLOGY(false);
   };
+    const [openBIOCHEMISTRY, setOpenBIOCHEMISTRY] = React.useState(false);
+      const handleClickBIOOpen = () => {
+    setOpenBIOCHEMISTRY(true);
+  };
+
+  const handleBIOClose = () => {
+    setOpenBIOCHEMISTRY(false);
+  };
+
+    
+   
+
+  
     return(
         <>
                 <div className='flex'>
@@ -165,7 +198,7 @@ function PatientForm(){
         
         <div className='flex pt'>
         <Button className='btn' variant="contained" onClick={handleClickOpen}>HAEMATOLOGY</Button>  
-        <Button className='btn' variant="contained">BIOCHEMISTRY</Button>  
+        <Button className='btn' variant="contained" onClick={handleClickBIOOpen}>BIOCHEMISTRY</Button>  
         <Button className='btn' variant="contained">SEROLOGY</Button>  
         <Button className='btn' variant="contained">URINE</Button>  
         <Button className='btn' variant="contained">STOOL</Button>  
@@ -213,9 +246,46 @@ function PatientForm(){
               <CloseIcon />
             </IconButton>
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-              Sound
+              HAEMATOLOGY
             </Typography>
             <Button autoFocus color="inherit" onClick={handleClose}>
+              save
+            </Button>
+          </Toolbar>
+        </AppBar>
+        <List>
+          <ListItemButton>
+            <ListItemText primary="Phone ringtone" secondary="Titania" />
+          </ListItemButton>
+          <Divider />
+          <ListItemButton>
+            <ListItemText
+              primary="Default notification ringtone"
+              secondary="Tethys"
+            />
+          </ListItemButton>
+        </List>
+      </Dialog>
+            <Dialog
+        fullScreen
+        open={open}
+        onClose={handleBIOClose}
+        TransitionComponent={Transition}
+      >
+        <AppBar sx={{ position: 'relative' }}>
+          <Toolbar>
+            <IconButton
+              edge="start"
+              color="inherit"
+              onClick={handleBIOClose}
+              aria-label="close"
+            >
+              <CloseIcon />
+            </IconButton>
+            <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+              Sound
+            </Typography>
+            <Button autoFocus color="inherit" onClick={handleBIOClose}>
               save
             </Button>
           </Toolbar>
