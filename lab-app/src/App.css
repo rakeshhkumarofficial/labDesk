@@ -1,3 +1,6 @@
+body{
+  background: #ececf8 !important;
+}
 .App{
   padding-top: 5px;
   display: flex;
