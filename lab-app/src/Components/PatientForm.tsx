@@ -6,6 +6,7 @@ import React from 'react';
 function PatientForm(){
     const [Materials, setMaterials] = React.useState('');
     const [referredby, setReferredby] = React.useState('');
+     const [openHAEMATOLOGY, setOpenHAEMATOLOGY] = React.useState(false);
 
     const handleChange = (event: SelectChangeEvent) => {
         setMaterials(event.target.value);
@@ -13,6 +14,13 @@ function PatientForm(){
     const handleReferreChange = (event: SelectChangeEvent) => {
         setReferredby(event.target.value);
     };
+      const handleClickOpen = () => {
+    setOpenHAEMATOLOGY(true);
+  };
+
+  const handleClose = () => {
+    setOpenHAEMATOLOGY(false);
+  };
     return(
         <>
                 <div className='flex'>
@@ -156,7 +164,7 @@ function PatientForm(){
         </div>
         
         <div className='flex pt'>
-        <Button className='btn' variant="contained">HAEMATOLOGY</Button>  
+        <Button className='btn' variant="contained" onClick={handleClickOpen}>HAEMATOLOGY</Button>  
         <Button className='btn' variant="contained">BIOCHEMISTRY</Button>  
         <Button className='btn' variant="contained">SEROLOGY</Button>  
         <Button className='btn' variant="contained">URINE</Button>  
@@ -187,6 +195,44 @@ function PatientForm(){
         <Button className='btn' variant="contained">HB A1c l</Button>  
         <Button className='btn' variant="contained">HB A1c ll</Button>  
         </div>
+            
+       <Dialog
+        fullScreen
+        open={open}
+        onClose={handleClose}
+        TransitionComponent={Transition}
+      >
+        <AppBar sx={{ position: 'relative' }}>
+          <Toolbar>
+            <IconButton
+              edge="start"
+              color="inherit"
+              onClick={handleClose}
+              aria-label="close"
+            >
+              <CloseIcon />
+            </IconButton>
+            <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+              Sound
+            </Typography>
+            <Button autoFocus color="inherit" onClick={handleClose}>
+              save
+            </Button>
+          </Toolbar>
+        </AppBar>
+        <List>
+          <ListItemButton>
+            <ListItemText primary="Phone ringtone" secondary="Titania" />
+          </ListItemButton>
+          <Divider />
+          <ListItemButton>
+            <ListItemText
+              primary="Default notification ringtone"
+              secondary="Tethys"
+            />
+          </ListItemButton>
+        </List>
+      </Dialog>
         </>
     );
 
