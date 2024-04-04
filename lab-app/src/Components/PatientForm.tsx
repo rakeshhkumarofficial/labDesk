@@ -231,7 +231,7 @@ function PatientForm(){
             
        <Dialog
         fullScreen
-        open={open}
+        open={openHAEMATOLOGY}
         onClose={handleClose}
         TransitionComponent={Transition}
       >
@@ -268,7 +268,7 @@ function PatientForm(){
       </Dialog>
             <Dialog
         fullScreen
-        open={open}
+        open={openBIOCHEMISTRY}
         onClose={handleBIOClose}
         TransitionComponent={Transition}
       >
