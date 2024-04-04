@@ -5,6 +5,7 @@ const createWindow = () => {
     title:"Lap Desktop",
     width: 1280,
     height: 860,
+    menubar:null,
   })
 
  // win.webContents.openDevTools();
