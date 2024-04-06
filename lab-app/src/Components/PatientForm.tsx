@@ -93,7 +93,8 @@ function PatientForm() {
           'Gender':Gender,
           'Materials':Materials,
           'referredby':referredby,
-          "Address":Address
+          "Address":Address,
+          'Preg Test':PREG
            
         };
       } else {
@@ -115,24 +116,10 @@ function PatientForm() {
     console.log("patient",Patient)
   }
 
-  // function addValue(value:any, key:string) {
-  //   setPatient(prevState => {
-  //     if (Object.keys(prevState).length === 0 && prevState.constructor === Object) {
-        
-  //       const uniqueId = generateUniqueId();
-  //       return {
-  //         ...prevState,
-  //         id: uniqueId,
-  //         [key]: value
-  //       };
-  //     } else {
-  //       return {
-  //         ...prevState,
-  //         [key]: value
-  //       };
-  //     }
-  //   });
-  // }
+function PregnacyTestClick(PregData:any){
+  console.log(PregData);
+  setPREG(PregData);
+}
   
 
   function generateUniqueId() {
@@ -231,14 +218,14 @@ function PatientForm() {
     setOpenGTT(false);
   };
 
-  const [openPreg, setOpenPreg] = React.useState(false);
+  // const [openPreg, setOpenPreg] = React.useState(false);
 
-  const handlePregClickOpen = () => {
-    setOpenPreg(true);
-  };
-  const handlePregClose = () => {
-    setOpenPreg(false);
-  };
+  // const handlePregClickOpen = () => {
+  //   setOpenPreg(true);
+  // };
+  // const handlePregClose = () => {
+  //   setOpenPreg(false);
+  // };
 
   const [openRFT, setOpenRFT] = React.useState(false);
 
@@ -501,7 +488,8 @@ function PatientForm() {
         <Button className='btn' variant="contained" onClick={handleTHYROIDClickOpen}>THYROID</Button>
         <Button className='btn' variant="contained" ></Button>
         <Button className='btn' variant="contained">SPECIAL TEST</Button>
-        <Button className='btn' variant="contained" onClick={handlePregClickOpen}>PREGNANCY</Button>
+        <PregnancyDilaog onSaveClick={PregnacyTestClick} formatDate={formatDate} />
+        {/* <Button className='btn' variant="contained" onClick={handlePregClickOpen}>PREGNANCY</Button> */}
         <Button className='btn' variant="contained">PBF</Button>
       </div>
       <div className='flex  pt'>
@@ -876,7 +864,7 @@ function PatientForm() {
         </DialogActions>
       </BootstrapDialog>
       {/* small dialog Preg box */}
-      <BootstrapDialog
+      {/* <BootstrapDialog
         onClose={handlePregClose}
         aria-labelledby="customized-dialog-title"
         open={openPreg}
@@ -904,7 +892,7 @@ function PatientForm() {
             Save changes
           </Button>
         </DialogActions>
-      </BootstrapDialog>
+      </BootstrapDialog> */}
       {/* small dialog RFT box */}
       <BootstrapDialog
         onClose={handleRFTClose}
@@ -943,7 +931,7 @@ function PatientForm() {
           </Typography>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={handlePregClose}>
+          <Button autoFocus onClick={handleRFTClose}>
             Save changes
           </Button>
         </DialogActions>
