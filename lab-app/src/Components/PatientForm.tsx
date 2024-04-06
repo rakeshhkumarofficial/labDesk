@@ -16,6 +16,7 @@ import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
 import PregnancyDilaog from './Dialogs/PregnancyDialog';
 import Footer from './Footer/Footer';
+import IronDialog from './Dialogs/IronDialog';
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -95,7 +96,8 @@ function PatientForm() {
           'Materials':Materials,
           'referredby':referredby,
           "Address":Address,
-          'Preg Test':PREG
+          'Preg Test':PREG,
+          'Iron Test':IRON
            
         };
       } else {
@@ -110,7 +112,9 @@ function PatientForm() {
           'Gender':Gender,
           'Materials':Materials,
           'referredby':referredby,
-          "Address":Address
+          "Address":Address,
+          'Preg Test':PREG,
+          'Iron Test':IRON
         };
       }
     });
@@ -120,6 +124,10 @@ function PatientForm() {
 function PregnacyTestClick(PregData:any){
   console.log(PregData);
   setPREG(PregData);
+}
+function IRONTestClick(IRONData:any){
+  console.log(IRONData);
+  setIRON(IRONData);
 }
   
 
@@ -200,14 +208,14 @@ function PregnacyTestClick(PregData:any){
     setOpenCULTURE(false);
   };
 
-  const [openIRON, setOpenIRON] = React.useState(false);
+  // const [openIRON, setOpenIRON] = React.useState(false);
 
-  const handleIRONClickOpen = () => {
-    setOpenIRON(true);
-  };
-  const handleIRONClose = () => {
-    setOpenIRON(false);
-  };
+  // const handleIRONClickOpen = () => {
+  //   setOpenIRON(true);
+  // };
+  // const handleIRONClose = () => {
+  //   setOpenIRON(false);
+  // };
 
   
   const [openGTT, setOpenGTT] = React.useState(false);
@@ -496,7 +504,8 @@ function PregnacyTestClick(PregData:any){
       </div>
       <div className='flex  pt'>
         <Button className='btn' variant="contained" onClick={handleGTTClickOpen}>GTT</Button>
-        <Button className='btn' variant="contained" onClick={handleIRONClickOpen}>IRON</Button>
+        <IronDialog onSaveClick={IRONTestClick}/>
+        {/* <Button className='btn' variant="contained" onClick={handleIRONClickOpen}>IRON</Button> */}
         <Button className='btn' variant="contained" onClick={handleClickCULTUREOpen} >CULTURE</Button>
         <Button className='btn' variant="contained">DRUG ABUSE</Button>
         <Button className='btn' variant="contained" onClick={handleHBA1c1ClickOpen}>HB A1c 1</Button>
@@ -780,7 +789,7 @@ function PregnacyTestClick(PregData:any){
         </DialogActions>
       </BootstrapDialog>
       {/* small dialog IRON box */}
-      <BootstrapDialog
+      {/* <BootstrapDialog
         onClose={handleIRONClose}
         aria-labelledby="customized-dialog-title"
         open={openIRON}
@@ -821,7 +830,7 @@ function PregnacyTestClick(PregData:any){
             Save changes
           </Button>
         </DialogActions>
-      </BootstrapDialog>
+      </BootstrapDialog> */}
       {/* small dialog GTT box */}
       <BootstrapDialog
         onClose={handleGTTClose}
