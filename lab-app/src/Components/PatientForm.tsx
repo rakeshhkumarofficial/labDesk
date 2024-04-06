@@ -174,6 +174,32 @@ function PatientForm() {
   const handleSEMENClose = () => {
     setOpenSEMEN(false);
   };
+
+  const [openCBC, setOpenCBC] = React.useState(false);
+
+  const handleCBCClickOpen = () => {
+    setOpenCBC(true);
+  };
+  const handleCBCClose = () => {
+    setOpenCBC(false);
+  };
+  const [openLIPID, setOpenLIPID] = React.useState(false);
+
+  const handleLIPIDClickOpen = () => {
+    setOpenLIPID(true);
+  };
+  const handleLIPIDClose = () => {
+    setOpenLIPID(false);
+  };
+
+  const [openTHYROID, setOpenTHYROID] = React.useState(false);
+
+  const handleTHYROIDClickOpen = () => {
+    setOpenTHYROID(true);
+  };
+  const handleTHYROIDClose = () => {
+    setOpenTHYROID(false);
+  };
   return (
     <>
       <div className='flex'>
@@ -325,16 +351,16 @@ function PatientForm() {
         <Button className='btn' variant="contained">FLUID</Button>
       </div>
       <div className='flex  pt'>
-        <Button className='btn' variant="contained">LFT</Button>
-        <Button className='btn' variant="contained">LIPID PROFILE</Button>
-        <Button className='btn' variant="contained">SEMEN</Button>
+        <Button className='btn' variant="contained" onClick={handleLFTClickOpen}>LFT</Button>
+        <Button className='btn' variant="contained" onClick={handleLIPIDClickOpen}>LIPID PROFILE</Button>
+        <Button className='btn' variant="contained" onClick={handleSEMENClickOpen}>SEMEN</Button>
         <Button className='btn' variant="contained" onClick={handleELECTROLYTESClickOpen}>ELECTROLYTES</Button>
-        <Button className='btn' variant="contained">WIDAL</Button>
-        <Button className='btn' variant="contained">CBC</Button>
+        <Button className='btn' variant="contained" onClick={handleWIDALClickOpen}>WIDAL</Button>
+        <Button className='btn' variant="contained" onClick={handleCBCClickOpen}>CBC</Button>
       </div>
       <div className='flex  pt'>
         <Button className='btn' variant="contained" onClick={handleRFTClickOpen}>RFT/KFT</Button>
-        <Button className='btn' variant="contained">THYROID</Button>
+        <Button className='btn' variant="contained" onClick={handleTHYROIDClickOpen}>THYROID</Button>
         <Button className='btn' variant="contained" ></Button>
         <Button className='btn' variant="contained">SPECIAL TEST</Button>
         <Button className='btn' variant="contained" onClick={handlePregClickOpen}>PREGNANCY</Button>
@@ -794,6 +820,49 @@ function PatientForm() {
           </Button>
         </DialogActions>
       </BootstrapDialog>
+      {/* small dialog LFT box */}
+      <BootstrapDialog
+        onClose={handleLFTClose}
+        aria-labelledby="customized-dialog-title"
+        open={openLFT}
+      >
+        <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+          Modal title
+        </DialogTitle>
+        <IconButton
+          aria-label="close"
+          onClick={handleLFTClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+        <DialogContent dividers>
+          <Typography gutterBottom>
+            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
+            consectetur ac, vestibulum at eros.
+          </Typography>
+          <Typography gutterBottom>
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+          </Typography>
+          <Typography gutterBottom>
+            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
+            magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
+            ullamcorper nulla non metus auctor fringilla.
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleLFTClose}>
+            Save changes
+          </Button>
+        </DialogActions>
+      </BootstrapDialog>
       {/* small dialog ELECTROLYTES box */}
       <BootstrapDialog
         onClose={handleELECTROLYTESClose}
@@ -833,6 +902,221 @@ function PatientForm() {
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleELECTROLYTESClose}>
+            Save changes
+          </Button>
+        </DialogActions>
+      </BootstrapDialog>
+      {/* small dialog WIDAL box */}
+      <BootstrapDialog
+        onClose={handleWIDALClose}
+        aria-labelledby="customized-dialog-title"
+        open={openWIDAL}
+      >
+        <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+          Modal title
+        </DialogTitle>
+        <IconButton
+          aria-label="close"
+          onClick={handleWIDALClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+        <DialogContent dividers>
+          <Typography gutterBottom>
+            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
+            consectetur ac, vestibulum at eros.
+          </Typography>
+          <Typography gutterBottom>
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+          </Typography>
+          <Typography gutterBottom>
+            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
+            magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
+            ullamcorper nulla non metus auctor fringilla.
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleWIDALClose}>
+            Save changes
+          </Button>
+        </DialogActions>
+      </BootstrapDialog>
+      {/* small dialog semen box */}
+      <BootstrapDialog
+        onClose={handleSEMENClose}
+        aria-labelledby="customized-dialog-title"
+        open={openSEMEN}
+      >
+        <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+          Modal title
+        </DialogTitle>
+        <IconButton
+          aria-label="close"
+          onClick={handleSEMENClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+        <DialogContent dividers>
+          <Typography gutterBottom>
+            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
+            consectetur ac, vestibulum at eros.
+          </Typography>
+          <Typography gutterBottom>
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+          </Typography>
+          <Typography gutterBottom>
+            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
+            magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
+            ullamcorper nulla non metus auctor fringilla.
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleSEMENClose}>
+            Save changes
+          </Button>
+        </DialogActions>
+      </BootstrapDialog>
+      {/* small dialog THYROID box */}
+      <BootstrapDialog
+        onClose={handleTHYROIDClose}
+        aria-labelledby="customized-dialog-title"
+        open={openTHYROID}
+      >
+        <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+          Modal title
+        </DialogTitle>
+        <IconButton
+          aria-label="close"
+          onClick={handleTHYROIDClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+        <DialogContent dividers>
+          <Typography gutterBottom>
+            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
+            consectetur ac, vestibulum at eros.
+          </Typography>
+          <Typography gutterBottom>
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+          </Typography>
+          <Typography gutterBottom>
+            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
+            magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
+            ullamcorper nulla non metus auctor fringilla.
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleTHYROIDClose}>
+            Save changes
+          </Button>
+        </DialogActions>
+      </BootstrapDialog>
+      {/* small dialog CBC box */}
+      <BootstrapDialog
+        onClose={handleCBCClose}
+        aria-labelledby="customized-dialog-title"
+        open={openCBC}
+      >
+        <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+          Modal title
+        </DialogTitle>
+        <IconButton
+          aria-label="close"
+          onClick={handleCBCClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+        <DialogContent dividers>
+          <Typography gutterBottom>
+            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
+            consectetur ac, vestibulum at eros.
+          </Typography>
+          <Typography gutterBottom>
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+          </Typography>
+          <Typography gutterBottom>
+            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
+            magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
+            ullamcorper nulla non metus auctor fringilla.
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleCBCClose}>
+            Save changes
+          </Button>
+        </DialogActions>
+      </BootstrapDialog>
+      {/* small dialog LIPID box */}
+      <BootstrapDialog
+        onClose={handleLIPIDClose}
+        aria-labelledby="customized-dialog-title"
+        open={openLIPID}
+      >
+        <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+          Modal title
+        </DialogTitle>
+        <IconButton
+          aria-label="close"
+          onClick={handleLIPIDClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+        <DialogContent dividers>
+          <Typography gutterBottom>
+            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
+            consectetur ac, vestibulum at eros.
+          </Typography>
+          <Typography gutterBottom>
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+          </Typography>
+          <Typography gutterBottom>
+            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
+            magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
+            ullamcorper nulla non metus auctor fringilla.
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleLIPIDClose}>
             Save changes
           </Button>
         </DialogActions>
