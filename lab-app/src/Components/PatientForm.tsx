@@ -17,6 +17,7 @@ import { TransitionProps } from '@mui/material/transitions';
 import PregnancyDilaog from './Dialogs/PregnancyDialog';
 import Footer from './Footer/Footer';
 import IronDialog from './Dialogs/IronDialog';
+import DRUG_ABUSE from './Dialogs/DrugAbuse';
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -97,7 +98,8 @@ function PatientForm() {
           'referredby':referredby,
           "Address":Address,
           'Preg Test':PREG,
-          'Iron Test':IRON
+          'Iron Test':IRON,
+          'Drugs Test':DRUGABUSE
            
         };
       } else {
@@ -114,7 +116,8 @@ function PatientForm() {
           'referredby':referredby,
           "Address":Address,
           'Preg Test':PREG,
-          'Iron Test':IRON
+          'Iron Test':IRON,
+          'Drugs Test':DRUGABUSE
         };
       }
     });
@@ -129,6 +132,11 @@ function IRONTestClick(IRONData:any){
   console.log(IRONData);
   setIRON(IRONData);
 }
+function DrugsTestClick(IRONData:any){
+  
+  setDRUGABUSE(IRONData);
+}
+  
   
 
   function generateUniqueId() {
@@ -507,7 +515,8 @@ function IRONTestClick(IRONData:any){
         <IronDialog onSaveClick={IRONTestClick}/>
         {/* <Button className='btn' variant="contained" onClick={handleIRONClickOpen}>IRON</Button> */}
         <Button className='btn' variant="contained" onClick={handleClickCULTUREOpen} >CULTURE</Button>
-        <Button className='btn' variant="contained">DRUG ABUSE</Button>
+        <DRUG_ABUSE onSaveClick={DrugsTestClick} />
+        {/* <Button className='btn' variant="contained" >DRUG ABUSE</Button> */}
         <Button className='btn' variant="contained" onClick={handleHBA1c1ClickOpen}>HB A1c 1</Button>
         <Button className='btn' variant="contained" onClick={handleHBA1c2ClickOpen}>HB A1c 2</Button>
       </div>
