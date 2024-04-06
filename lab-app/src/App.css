@@ -9,6 +9,12 @@ body{
   background: #ececf8;
 
 }
+.Gender,.REFERRED, .Materials{
+  height: 40px !important;
+}
+.MuiMenu-list{
+  background: #ececf8 !important;
+}
 .side-Area{
   margin-left: 4px;
   width: 29%;

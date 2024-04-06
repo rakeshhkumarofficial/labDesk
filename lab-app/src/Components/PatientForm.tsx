@@ -15,6 +15,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
 import PregnancyDilaog from './Dialogs/PregnancyDialog';
+import Footer from './Footer/Footer';
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -34,6 +35,111 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 function PatientForm() {
+  let data:any[] =[]
+  const [Patient, setPatient] = React.useState({});
+  const [Name , setName ] = React.useState('');
+  const [DATE , setDate ] = React.useState('');
+  const [ReciveData , setReciveDate ] = React.useState('');
+  const [time  , setTime ] = React.useState('');
+  const [  LabNO, setLabNo] = React.useState('');
+  const [  Gender, setGender] = React.useState('');
+  const [  Age, setAge] = React.useState('');
+  const [  prefix, setprefix] = React.useState('');
+  const [  Address, setAddress] = React.useState('');
+  const [  M_no, setM_no] = React.useState('');
+  const [  HAEMATOLOGY, setHAEMATOLOGY] = React.useState({});
+  const [  BIO, setBIO] = React.useState({});
+  const [  PREG, setPREG] = React.useState({});
+  const [  Wadal, setWadal] = React.useState({});
+  const [  URINE, setURINE] = React.useState({});
+  const [  IRON, setIRON] = React.useState({});
+  const [  CULTURE, setCULTURE] = React.useState({});
+  const [  HBA1c1, setHBA1c1] = React.useState({});
+  const [  GTT, setGTT] = React.useState({});
+  const [  HBA1c2, setHBA1c2] = React.useState({});
+  const [  PBF, setPBF] = React.useState({});
+  const [  SPECIAL, setSPECIAL] = React.useState({});
+  const [  THYROID, setTHYROID] = React.useState({});
+  const [  SEROLOGY, setSEROLOGY] = React.useState({});
+  const [  FLUID, setFLUID] = React.useState({});
+  const [  DRUGABUSE, setDRUGABUSE] = React.useState({});
+  const [  LFT, setLFT] = React.useState({});
+  const [  LIPID, setLIPID] = React.useState({});
+  const [  SEMEN, setSEMEN] = React.useState({});
+  const [  ELECTROLYTES, setELECTROLYTES] = React.useState({});
+  const [  CBC, setCBC] = React.useState({});
+  const [  STOOL, setSTOOL] = React.useState({});
+
+  function formatDate(dateObj:Date) {
+    const year = dateObj.getFullYear();
+    const month = String(dateObj.getMonth() + 1).padStart(2, '0'); // Adding 1 because getMonth returns zero-based index
+    const day = String(dateObj.getDate()).padStart(2, '0');
+    return `${day}/${month}/${year}`;
+  }
+  function save_Print(){
+    setPatient(prevState => {
+      if (Object.keys(prevState).length === 0 && prevState.constructor === Object) {
+        
+        const uniqueId = generateUniqueId();
+        return {
+          ...prevState,
+          id: uniqueId,
+          'DATE': DATE,
+          'RecivedDate':ReciveData,
+          'Time':time,
+          'Lab NO':LabNO,
+          'M_no':M_no,
+          'Age':Age,
+          'Gender':Gender,
+          'Materials':Materials,
+          'referredby':referredby,
+          "Address":Address
+           
+        };
+      } else {
+        return {
+          ...prevState,
+          'DATE': DATE,
+          'RecivedDate':ReciveData,
+          'Time':time,
+          'Lab NO':LabNO,
+          'M_no':M_no,
+          'Age':Age,
+          'Gender':Gender,
+          'Materials':Materials,
+          'referredby':referredby,
+          "Address":Address
+        };
+      }
+    });
+    console.log("patient",Patient)
+  }
+
+  // function addValue(value:any, key:string) {
+  //   setPatient(prevState => {
+  //     if (Object.keys(prevState).length === 0 && prevState.constructor === Object) {
+        
+  //       const uniqueId = generateUniqueId();
+  //       return {
+  //         ...prevState,
+  //         id: uniqueId,
+  //         [key]: value
+  //       };
+  //     } else {
+  //       return {
+  //         ...prevState,
+  //         [key]: value
+  //       };
+  //     }
+  //   });
+  // }
+  
+
+  function generateUniqueId() {
+  
+    return Math.random().toString(36).substring(2, 10);
+  }
+  
   const [Materials, setMaterials] = React.useState('');
   const handleChange = (event: SelectChangeEvent) => {
     setMaterials(event.target.value);
@@ -208,15 +314,18 @@ function PatientForm() {
           <TextField
             label="REPORT DATE"
             id="outlined-size-small"
-            defaultValue="23/03/2024"
+            // defaultValue="23/03/2024"
+            value={DATE|| formatDate(new Date)}
             size="small"
+            onChange={(e)=>{setDate(e.target.value)}}
           />
         </div>
         <div>
           <TextField
             label="TIME"
             id="outlined-size-small"
-            defaultValue="Small"
+            value={time}
+            onChange={(e)=>{setTime(e.target.value)}}
             size="small"
           />
         </div>
@@ -224,7 +333,8 @@ function PatientForm() {
           <TextField
             label="LAB NO"
             id="outlined-size-small"
-            defaultValue="1145"
+            value={LabNO}
+            onChange={(e)=>{setLabNo(e.target.value)}}
             size="small"
           />
         </div>
@@ -236,7 +346,8 @@ function PatientForm() {
           <TextField
             label="RECIVED ON"
             id="outlined-size-small"
-            defaultValue="23/03/2024"
+            value={ReciveData}
+            onChange={(e)=>{setReciveDate(e.target.value)}}
             size="small"
           />
         </div>
@@ -244,7 +355,8 @@ function PatientForm() {
           <TextField
             label="TIME"
             id="outlined-size-small"
-            defaultValue="Small"
+            value={time}
+            onChange={(e)=>{setTime(e.target.value)}}
             size="small"
           />
         </div>
@@ -257,23 +369,44 @@ function PatientForm() {
           <TextField
             label="PATIENT NAME"
             id="outlined-size-small"
-            defaultValue="YAN"
+            value={Name}
+            onChange={(e)=>{setName(e.target.value)}}
             size="small"
           />
         </div>
         <div>
-          <TextField
+        <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+            <InputLabel id="demo-select-small-label">GENDER</InputLabel>
+            <Select
+              labelId="demo-select-small-label"
+              style={{'background':'#ececf8'}}
+              className='Gender'
+              id="demo-select-small"
+              value={Gender}
+              label="GENDER"
+              onChange={(e)=>{setGender(e.target.value)}}
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={11}>Male</MenuItem>
+              <MenuItem value={12}>Female</MenuItem>
+              <MenuItem value={13}>Other</MenuItem>
+            </Select>
+          </FormControl>
+          {/* <TextField
             label="GENDER"
             id="outlined-size-small"
-            defaultValue="Small"
+           
             size="small"
-          />
+          /> */}
         </div>
         <div>
           <TextField
             label="AGE"
             id="outlined-size-small"
-            defaultValue="23/03/2024"
+            value={Age}
+            onChange={(e)=>{setAge(e.target.value)}}
             size="small"
           />
         </div>
@@ -286,7 +419,8 @@ function PatientForm() {
           <TextField
             label="Addres"
             id="outlined-size-small"
-            defaultValue="Small"
+            value={Address}
+            onChange={(e)=>{setAddress(e.target.value)}}
             size="small"
           />
         </div>
@@ -294,7 +428,8 @@ function PatientForm() {
           <TextField
             label="Mobile"
             id="outlined-size-small"
-            defaultValue="Small"
+            value={M_no}
+            onChange={(e)=>{setM_no(e.target.value)}}
             size="small"
           />
         </div>
@@ -311,6 +446,7 @@ function PatientForm() {
               id="demo-select-small"
               value={Materials}
               label="Materials"
+              className='Materials'
               onChange={handleChange}
             >
               <MenuItem value="">
@@ -330,6 +466,7 @@ function PatientForm() {
               id="demo-select-small"
               value={referredby}
               label="REFERRED BY"
+              className='REFERRED'
               onChange={handleReferreChange}
             >
               <MenuItem value="">
@@ -374,6 +511,9 @@ function PatientForm() {
         <Button className='btn' variant="contained">DRUG ABUSE</Button>
         <Button className='btn' variant="contained" onClick={handleHBA1c1ClickOpen}>HB A1c 1</Button>
         <Button className='btn' variant="contained" onClick={handleHBA1c2ClickOpen}>HB A1c 2</Button>
+      </div>
+      <div>
+        <Footer  save={save_Print}/>
       </div>
 
       <Dialog
