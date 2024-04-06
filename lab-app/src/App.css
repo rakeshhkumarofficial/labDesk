@@ -9,6 +9,10 @@ body{
   background: #ececf8;
 
 }
+.side-Area{
+  margin-left: 4px;
+  width: 29%;
+}
 .Enter-Area{
   width: 82%;
 }

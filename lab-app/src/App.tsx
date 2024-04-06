@@ -1,6 +1,7 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import './App.css';
 import PatientScreen from './Components/PatientScreen';
+import SideBarCard from './Components/sidebar/SideBarCard';
 
 const theme = createTheme({
   palette:{
@@ -18,7 +19,7 @@ function App() {
       <PatientScreen />
       </div>
       <div className='side-Area'>
-        
+        <SideBarCard />
       </div >
         
       </div>
