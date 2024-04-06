@@ -38,7 +38,8 @@ function PatientForm() {
   let data:any[] =[]
   const [Patient, setPatient] = React.useState({});
   const [Name , setName ] = React.useState('');
-  const [DATE , setDate ] = React.useState('');
+  const [DATE , setDate ] = React.useState<string>(formatDate(new Date));
+  //setDate(formatDate(new Date));
   const [ReciveData , setReciveDate ] = React.useState('');
   const [time  , setTime ] = React.useState('');
   const [  LabNO, setLabNo] = React.useState('');
@@ -74,7 +75,7 @@ function PatientForm() {
     const year = dateObj.getFullYear();
     const month = String(dateObj.getMonth() + 1).padStart(2, '0'); // Adding 1 because getMonth returns zero-based index
     const day = String(dateObj.getDate()).padStart(2, '0');
-    return `${day}/${month}/${year}`;
+    return `${day}-${month}-${year}`;
   }
   function save_Print(){
     setPatient(prevState => {
@@ -301,7 +302,8 @@ function PregnacyTestClick(PregData:any){
           <TextField
             label="REPORT DATE"
             id="outlined-size-small"
-            // defaultValue="23/03/2024"
+            type='date'
+            defaultValue={"02-04-2024"}
             value={DATE|| formatDate(new Date)}
             size="small"
             onChange={(e)=>{setDate(e.target.value)}}
