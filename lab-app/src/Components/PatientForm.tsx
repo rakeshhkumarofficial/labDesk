@@ -1,5 +1,5 @@
 
-import { Button, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Stack, TextField } from '@mui/material';
+import { Button, DialogActions, DialogContent, DialogTitle, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Stack, TextField, styled } from '@mui/material';
 import '../App.css';
 import React from 'react';
 import Dialog from '@mui/material/Dialog';
@@ -24,6 +24,14 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
+const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+  '& .MuiDialogContent-root': {
+    padding: theme.spacing(2),
+  },
+  '& .MuiDialogActions-root': {
+    padding: theme.spacing(1),
+  },
+}));
 function PatientForm() {
   const [Materials, setMaterials] = React.useState('');
   const handleChange = (event: SelectChangeEvent) => {
@@ -51,9 +59,61 @@ function PatientForm() {
   };
 
 
+  const [openHBA1c1, setOpenHBA1c1] = React.useState(false);
+
+  const handleHBA1c1ClickOpen = () => {
+    setOpenHBA1c1(true);
+  };
+  const handleHBA1c1Close = () => {
+    setOpenHBA1c1(false);
+  };
+
+  const [openHBA1c2, setOpenHBA1c2] = React.useState(false);
+
+  const handleHBA1c2ClickOpen = () => {
+    setOpenHBA1c2(true);
+  };
+  const handleHBA1c2Close = () => {
+    setOpenHBA1c2(false);
+  };
 
 
+  const [openCULTURE, setOpenCULTURE] = React.useState(false);
+  const handleClickCULTUREOpen = () => {
+    setOpenCULTURE(true);
+  };
 
+  const handleCULTUREClose = () => {
+    setOpenCULTURE(false);
+  };
+
+  const [openIRON, setOpenIRON] = React.useState(false);
+
+  const handleIRONClickOpen = () => {
+    setOpenIRON(true);
+  };
+  const handleIRONClose = () => {
+    setOpenIRON(false);
+  };
+
+  
+  const [openGTT, setOpenGTT] = React.useState(false);
+
+  const handleGTTClickOpen = () => {
+    setOpenGTT(true);
+  };
+  const handleGTTClose = () => {
+    setOpenGTT(false);
+  };
+
+  const [openPreg, setOpenPreg] = React.useState(false);
+
+  const handlePregClickOpen = () => {
+    setOpenPreg(true);
+  };
+  const handlePregClose = () => {
+    setOpenGTT(false);
+  };
   return (
     <>
       <div className='flex'>
@@ -217,16 +277,16 @@ function PatientForm() {
         <Button className='btn' variant="contained">THYROID</Button>
         <Button className='btn' variant="contained" ></Button>
         <Button className='btn' variant="contained">SPECIAL TEST</Button>
-        <Button className='btn' variant="contained">PREGNANCY</Button>
+        <Button className='btn' variant="contained" onClick={handlePregClickOpen}>PREGNANCY</Button>
         <Button className='btn' variant="contained">PBF</Button>
       </div>
       <div className='flex  pt'>
-        <Button className='btn' variant="contained">GTT</Button>
-        <Button className='btn' variant="contained">IRON</Button>
-        <Button className='btn' variant="contained" >CULTURE</Button>
+        <Button className='btn' variant="contained" onClick={handleGTTClickOpen}>GTT</Button>
+        <Button className='btn' variant="contained" onClick={handleIRONClickOpen}>IRON</Button>
+        <Button className='btn' variant="contained" onClick={handleClickCULTUREOpen} >CULTURE</Button>
         <Button className='btn' variant="contained">DRUG ABUSE</Button>
-        <Button className='btn' variant="contained">HB A1c l</Button>
-        <Button className='btn' variant="contained">HB A1c ll</Button>
+        <Button className='btn' variant="contained" onClick={handleHBA1c1ClickOpen}>HB A1c 1</Button>
+        <Button className='btn' variant="contained" onClick={handleHBA1c2ClickOpen}>HB A1c 2</Button>
       </div>
 
       <Dialog
@@ -303,6 +363,259 @@ function PatientForm() {
           </ListItemButton>
         </List>
       </Dialog>
+      <Dialog
+        fullScreen
+        open={openCULTURE}
+        onClose={handleCULTUREClose}
+        TransitionComponent={Transition}
+      >
+        <AppBar sx={{ position: 'relative' }}>
+          <Toolbar>
+            <IconButton
+              edge="start"
+              color="inherit"
+              onClick={handleCULTUREClose}
+              aria-label="close"
+            >
+              <CloseIcon />
+            </IconButton>
+            <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+            BIOCHEMISTRY
+            </Typography>
+            <Button autoFocus color="inherit" onClick={handleCULTUREClose}>
+              save
+            </Button>
+          </Toolbar>
+        </AppBar>
+        <List>
+          <ListItemButton>
+            <ListItemText primary="Phone ringtone" secondary="Titania" />
+          </ListItemButton>
+          <Divider />
+          <ListItemButton>
+            <ListItemText
+              primary="Default notification ringtone"
+              secondary="Tethys"
+            />
+          </ListItemButton>
+        </List>
+      </Dialog>
+      {/* small dialog box */}
+      <BootstrapDialog
+        onClose={handleHBA1c1Close}
+        aria-labelledby="customized-dialog-title"
+        open={openHBA1c1}
+      >
+        <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+          Modal title
+        </DialogTitle>
+        <IconButton
+          aria-label="close"
+          onClick={handleClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+        <DialogContent dividers>
+          <Typography gutterBottom>
+            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
+            consectetur ac, vestibulum at eros.
+          </Typography>
+          <Typography gutterBottom>
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+          </Typography>
+          <Typography gutterBottom>
+            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
+            magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
+            ullamcorper nulla non metus auctor fringilla.
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleHBA1c1Close}>
+            Save changes
+          </Button>
+        </DialogActions>
+      </BootstrapDialog>
+      {/* small dialog box */}
+      <BootstrapDialog
+        onClose={handleHBA1c2Close}
+        aria-labelledby="customized-dialog-title"
+        open={openHBA1c2}
+      >
+        <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+          Modal title
+        </DialogTitle>
+        <IconButton
+          aria-label="close"
+          onClick={handleClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+        <DialogContent dividers>
+          <Typography gutterBottom>
+            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
+            consectetur ac, vestibulum at eros.
+          </Typography>
+          <Typography gutterBottom>
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+          </Typography>
+          <Typography gutterBottom>
+            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
+            magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
+            ullamcorper nulla non metus auctor fringilla.
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleHBA1c2Close}>
+            Save changes
+          </Button>
+        </DialogActions>
+      </BootstrapDialog>
+      {/* small dialog IRON box */}
+      <BootstrapDialog
+        onClose={handleIRONClose}
+        aria-labelledby="customized-dialog-title"
+        open={openIRON}
+      >
+        <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+          Modal title
+        </DialogTitle>
+        <IconButton
+          aria-label="close"
+          onClick={handleIRONClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+        <DialogContent dividers>
+          <Typography gutterBottom>
+            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
+            consectetur ac, vestibulum at eros.
+          </Typography>
+          <Typography gutterBottom>
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+          </Typography>
+          <Typography gutterBottom>
+            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
+            magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
+            ullamcorper nulla non metus auctor fringilla.
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleIRONClose}>
+            Save changes
+          </Button>
+        </DialogActions>
+      </BootstrapDialog>
+      {/* small dialog GTT box */}
+      <BootstrapDialog
+        onClose={handleGTTClose}
+        aria-labelledby="customized-dialog-title"
+        open={openGTT}
+      >
+        <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+          Modal title
+        </DialogTitle>
+        <IconButton
+          aria-label="close"
+          onClick={handleGTTClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+        <DialogContent dividers>
+          <Typography gutterBottom>
+            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
+            consectetur ac, vestibulum at eros.
+          </Typography>
+          <Typography gutterBottom>
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+          </Typography>
+          <Typography gutterBottom>
+            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
+            magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
+            ullamcorper nulla non metus auctor fringilla.
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleGTTClose}>
+            Save changes
+          </Button>
+        </DialogActions>
+      </BootstrapDialog>
+            {/* small dialog Preg box */}
+            <BootstrapDialog
+        onClose={handlePregClose}
+        aria-labelledby="customized-dialog-title"
+        open={openPreg}
+      >
+        <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+          Modal title
+        </DialogTitle>
+        <IconButton
+          aria-label="close"
+          onClick={handlePregClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+        <DialogContent dividers>
+          <Typography gutterBottom>
+            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
+            consectetur ac, vestibulum at eros.
+          </Typography>
+          <Typography gutterBottom>
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+          </Typography>
+          <Typography gutterBottom>
+            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
+            magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
+            ullamcorper nulla non metus auctor fringilla.
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handlePregClose}>
+            Save changes
+          </Button>
+        </DialogActions>
+      </BootstrapDialog>
+
     </>
   );
 
