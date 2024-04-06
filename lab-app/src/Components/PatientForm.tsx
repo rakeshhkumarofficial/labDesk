@@ -141,6 +141,39 @@ function PatientForm() {
   const handleRFTClose = () => {
     setOpenRFT(false);
   };
+
+  const [openLFT, setOpenLFT] = React.useState(false);
+
+  const handleLFTClickOpen = () => {
+    setOpenLFT(true);
+  };
+  const handleLFTClose = () => {
+    setOpenLFT(false);
+  };
+  const [openWIDAL, setOpenWIDAL] = React.useState(false);
+
+  const handleWIDALClickOpen = () => {
+    setOpenWIDAL(true);
+  };
+  const handleWIDALClose = () => {
+    setOpenWIDAL(false);
+  };
+  const [openELECTROLYTES, setOpenELECTROLYTES] = React.useState(false);
+
+  const handleELECTROLYTESClickOpen = () => {
+    setOpenELECTROLYTES(true);
+  };
+  const handleELECTROLYTESClose = () => {
+    setOpenELECTROLYTES(false);
+  };
+  const [openSEMEN, setOpenSEMEN] = React.useState(false);
+
+  const handleSEMENClickOpen = () => {
+    setOpenSEMEN(true);
+  };
+  const handleSEMENClose = () => {
+    setOpenSEMEN(false);
+  };
   return (
     <>
       <div className='flex'>
@@ -295,7 +328,7 @@ function PatientForm() {
         <Button className='btn' variant="contained">LFT</Button>
         <Button className='btn' variant="contained">LIPID PROFILE</Button>
         <Button className='btn' variant="contained">SEMEN</Button>
-        <Button className='btn' variant="contained">ELECTROLYTES</Button>
+        <Button className='btn' variant="contained" onClick={handleELECTROLYTESClickOpen}>ELECTROLYTES</Button>
         <Button className='btn' variant="contained">WIDAL</Button>
         <Button className='btn' variant="contained">CBC</Button>
       </div>
@@ -427,7 +460,7 @@ function PatientForm() {
           </ListItemButton>
         </List>
       </Dialog>
-      {/* small dialog Stool box */}
+      {/* big dialog Stool box */}
       <Dialog
         fullScreen
         open={openStool}
@@ -465,7 +498,7 @@ function PatientForm() {
           </ListItemButton>
         </List>
       </Dialog>
-      {/* small dialog URINE box */}
+      {/* big dialog URINE box */}
       <Dialog
         fullScreen
         open={openURINE}
@@ -757,6 +790,49 @@ function PatientForm() {
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handlePregClose}>
+            Save changes
+          </Button>
+        </DialogActions>
+      </BootstrapDialog>
+      {/* small dialog ELECTROLYTES box */}
+      <BootstrapDialog
+        onClose={handleELECTROLYTESClose}
+        aria-labelledby="customized-dialog-title"
+        open={openELECTROLYTES}
+      >
+        <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+          Modal title
+        </DialogTitle>
+        <IconButton
+          aria-label="close"
+          onClick={handleELECTROLYTESClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+        <DialogContent dividers>
+          <Typography gutterBottom>
+            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
+            consectetur ac, vestibulum at eros.
+          </Typography>
+          <Typography gutterBottom>
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+          </Typography>
+          <Typography gutterBottom>
+            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
+            magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
+            ullamcorper nulla non metus auctor fringilla.
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleELECTROLYTESClose}>
             Save changes
           </Button>
         </DialogActions>
