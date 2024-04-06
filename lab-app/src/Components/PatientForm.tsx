@@ -59,6 +59,24 @@ function PatientForm() {
   };
 
 
+  const [openStool, setOpenStool] = React.useState(false);
+  const handleStoolClickOpen = () => {
+    setOpenStool(true);
+  };
+
+  const handleStoolClose = () => {
+    setOpenStool(false);
+  };
+
+  const [openURINE, setOpenURINE] = React.useState(false);
+  const handleURINEClickOpen = () => {
+    setOpenURINE(true);
+  };
+
+  const handleURINEClose = () => {
+    setOpenURINE(false);
+  };
+
   const [openHBA1c1, setOpenHBA1c1] = React.useState(false);
 
   const handleHBA1c1ClickOpen = () => {
@@ -112,7 +130,16 @@ function PatientForm() {
     setOpenPreg(true);
   };
   const handlePregClose = () => {
-    setOpenGTT(false);
+    setOpenPreg(false);
+  };
+
+  const [openRFT, setOpenRFT] = React.useState(false);
+
+  const handleRFTClickOpen = () => {
+    setOpenRFT(true);
+  };
+  const handleRFTClose = () => {
+    setOpenRFT(false);
   };
   return (
     <>
@@ -260,8 +287,8 @@ function PatientForm() {
         <Button className='btn' variant="contained" onClick={handleClickOpen}>HAEMATOLOGY</Button>
         <Button className='btn' variant="contained" onClick={handleClickBIOOpen}>BIOCHEMISTRY</Button>
         <Button className='btn' variant="contained">SEROLOGY</Button>
-        <Button className='btn' variant="contained">URINE</Button>
-        <Button className='btn' variant="contained">STOOL</Button>
+        <Button className='btn' variant="contained" onClick={handleURINEClickOpen}>URINE</Button>
+        <Button className='btn' variant="contained" onClick={handleStoolClickOpen}>STOOL</Button>
         <Button className='btn' variant="contained">FLUID</Button>
       </div>
       <div className='flex  pt'>
@@ -273,7 +300,7 @@ function PatientForm() {
         <Button className='btn' variant="contained">CBC</Button>
       </div>
       <div className='flex  pt'>
-        <Button className='btn' variant="contained">RFT/KFT</Button>
+        <Button className='btn' variant="contained" onClick={handleRFTClickOpen}>RFT/KFT</Button>
         <Button className='btn' variant="contained">THYROID</Button>
         <Button className='btn' variant="contained" ></Button>
         <Button className='btn' variant="contained">SPECIAL TEST</Button>
@@ -400,6 +427,82 @@ function PatientForm() {
           </ListItemButton>
         </List>
       </Dialog>
+      {/* small dialog Stool box */}
+      <Dialog
+        fullScreen
+        open={openStool}
+        onClose={handleStoolClose}
+        TransitionComponent={Transition}
+      >
+        <AppBar sx={{ position: 'relative' }}>
+          <Toolbar>
+            <IconButton
+              edge="start"
+              color="inherit"
+              onClick={handleStoolClose}
+              aria-label="close"
+            >
+              <CloseIcon />
+            </IconButton>
+            <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+            BIOCHEMISTRY
+            </Typography>
+            <Button autoFocus color="inherit" onClick={handleStoolClose}>
+              save
+            </Button>
+          </Toolbar>
+        </AppBar>
+        <List>
+          <ListItemButton>
+            <ListItemText primary="Phone ringtone" secondary="Titania" />
+          </ListItemButton>
+          <Divider />
+          <ListItemButton>
+            <ListItemText
+              primary="Default notification ringtone"
+              secondary="Tethys"
+            />
+          </ListItemButton>
+        </List>
+      </Dialog>
+      {/* small dialog URINE box */}
+      <Dialog
+        fullScreen
+        open={openURINE}
+        onClose={handleURINEClose}
+        TransitionComponent={Transition}
+      >
+        <AppBar sx={{ position: 'relative' }}>
+          <Toolbar>
+            <IconButton
+              edge="start"
+              color="inherit"
+              onClick={handleURINEClose}
+              aria-label="close"
+            >
+              <CloseIcon />
+            </IconButton>
+            <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+            BIOCHEMISTRY
+            </Typography>
+            <Button autoFocus color="inherit" onClick={handleStoolClose}>
+              save
+            </Button>
+          </Toolbar>
+        </AppBar>
+        <List>
+          <ListItemButton>
+            <ListItemText primary="Phone ringtone" secondary="Titania" />
+          </ListItemButton>
+          <Divider />
+          <ListItemButton>
+            <ListItemText
+              primary="Default notification ringtone"
+              secondary="Tethys"
+            />
+          </ListItemButton>
+        </List>
+      </Dialog>
       {/* small dialog box */}
       <BootstrapDialog
         onClose={handleHBA1c1Close}
@@ -411,7 +514,7 @@ function PatientForm() {
         </DialogTitle>
         <IconButton
           aria-label="close"
-          onClick={handleClose}
+          onClick={handleHBA1c1Close}
           sx={{
             position: 'absolute',
             right: 8,
@@ -572,8 +675,8 @@ function PatientForm() {
           </Button>
         </DialogActions>
       </BootstrapDialog>
-            {/* small dialog Preg box */}
-            <BootstrapDialog
+      {/* small dialog Preg box */}
+      <BootstrapDialog
         onClose={handlePregClose}
         aria-labelledby="customized-dialog-title"
         open={openPreg}
@@ -584,6 +687,49 @@ function PatientForm() {
         <IconButton
           aria-label="close"
           onClick={handlePregClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+        <DialogContent dividers>
+          <Typography gutterBottom>
+            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
+            consectetur ac, vestibulum at eros.
+          </Typography>
+          <Typography gutterBottom>
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+          </Typography>
+          <Typography gutterBottom>
+            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
+            magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
+            ullamcorper nulla non metus auctor fringilla.
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handlePregClose}>
+            Save changes
+          </Button>
+        </DialogActions>
+      </BootstrapDialog>
+      {/* small dialog RFT box */}
+      <BootstrapDialog
+        onClose={handleRFTClose}
+        aria-labelledby="customized-dialog-title"
+        open={openRFT}
+      >
+        <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+          Modal title
+        </DialogTitle>
+        <IconButton
+          aria-label="close"
+          onClick={handleRFTClose}
           sx={{
             position: 'absolute',
             right: 8,
