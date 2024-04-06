@@ -37,7 +37,6 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 function PatientForm() {
-  let data:any[] =[]
   const [Patient, setPatient] = React.useState({});
   const [Name , setName ] = React.useState('');
   const [DATE , setDate ] = React.useState<string>(formatDate(new Date));
@@ -351,7 +350,8 @@ function DrugsTestClick(IRONData:any){
           <TextField
             label="RECIVED ON"
             id="outlined-size-small"
-            value={ReciveData}
+            type='date'
+            value={ReciveData ||formatDate(new Date)}
             onChange={(e)=>{setReciveDate(e.target.value)}}
             size="small"
           />
@@ -521,7 +521,7 @@ function DrugsTestClick(IRONData:any){
         <Button className='btn' variant="contained" onClick={handleHBA1c2ClickOpen}>HB A1c 2</Button>
       </div>
       <div>
-        <Footer  save={save_Print}/>
+        <Footer  save={save_Print} Patient={Patient}/>
       </div>
 
       <Dialog
